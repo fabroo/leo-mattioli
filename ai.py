@@ -2,6 +2,7 @@ import face_recognition
 import os
 import cv2
 import pickle
+import shutil
 
 KNOWN_FACES_DIR = './fotos/'
 known_faces = []
@@ -19,14 +20,20 @@ for name in os.listdir(KNOWN_FACES_DIR):
         # Always returns a list of found faces, for this purpose we take first face only (assuming one face per image as you can't be twice on one image)
         try:
             encoding = face_recognition.face_encodings(image)[0]
+            
 
         except:
             print("peto: "+str(filename))
-            os.remove(f'{KNOWN_FACES_DIR}/{name}/{filename}')
+            dir_error = './error/'
+            if not os.path.exists(f'{dir_error}/{name}'):
+                os.makedirs(f'{dir_error}/{name}')
+
+            shutil.move(f'{KNOWN_FACES_DIR}/{name}/{filename}',f'{dir_error}/{name}/{filename}')
+            #os.remove(f'{KNOWN_FACES_DIR}/{name}/{filename}')
         # Append encodings and name
         known_faces.append(encoding)
         known_names.append(name)
-print(known_faces)
+# print(known_faces)
 print(known_names)
 
 f = open('./pickle/known_faces','wb')
