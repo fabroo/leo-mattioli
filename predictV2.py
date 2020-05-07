@@ -18,7 +18,7 @@ FONT_THICKNESS = 2
 SELECTED_FRAMES = 10  #n of pictures taken 
 MODEL = 'hog'  # default: 'hog', other one can be 'cnn' - CUDA accelerated (if available) deep-learning pretrained model
 
-video = cv2.VideoCapture(2) #CAMBIAR SEGUN LA PC QUE SEA, BRENDA Y TIEVO USAN 0, FABRO USA 2
+video = cv2.VideoCapture(0) #CAMBIAR SEGUN LA PC QUE SEA, BRENDA Y TIEVO USAN 0, FABRO USA 2
 
 kf = open('./pickle/known_faces','rb')
 kn = open('./pickle/known_names','rb')
