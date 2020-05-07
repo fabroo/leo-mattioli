@@ -63,8 +63,8 @@ try:
     g = open('./pickle/known_names','wb')
 
 
-    serialized = pickle.dump(total_faces,f, protocol=0)
-    serialized = pickle.dump(total_names,g, protocol=0)
+    serialized = pickle.dump(total_faces,f, pickle.HIGHEST_PROTOCOL)
+    serialized = pickle.dump(total_names,g, pickle.HIGHEST_PROTOCOL)
     f.close()
     g.close()
 except:
