@@ -2,6 +2,11 @@ import face_recognition
 import os
 import cv2
 import pickle
+import json 
+#proba con el dump y el load
+jsonFile = open('sth.json')
+
+jsonParsed = json.load(jsonFile)
 
 KNOWN_FACES_DIR = './fotos/'
 #UNKNOWN_FACES_DIR = 'frecon/unknown/'
@@ -34,6 +39,9 @@ print('Loading known faces...')
 while True:
 
     # Load image
+
+    #ret, image = video.read()
+
     ret,ima = video.read() 
     image = cv2.resize(ima, (1280, 720) )
     
