@@ -3,10 +3,13 @@ import os
 import cv2
 import pickle
 import shutil
+import time
 
 KNOWN_FACES_DIR = './fotos/'
 known_faces = []
 known_names = []
+
+start = time.time() #the code starts here
 
 for name in os.listdir(KNOWN_FACES_DIR):
 
@@ -44,4 +47,8 @@ serialized = pickle.dump(known_faces,f, protocol=0)
 serialized = pickle.dump(known_names,g, protocol=0)
 f.close()
 g.close()
-print('listo')
+
+end = time.time() #the code ends here
+time = end - start #total time
+
+print('listo, se termino en: '+ str(time) +' segundos, listo para usar!')
