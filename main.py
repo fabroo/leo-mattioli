@@ -14,16 +14,18 @@ def createTemporaryFile(name,password):
 
 
 contra = str(input("passw: "))
-name = str(input("name: ")) #cara
+# name = str(input("name: ")) #cara
 pasar = False
 
 if len(contra) == MINLENGTH:
     for dict in data:
-        if dict['pasw'] == contra and dict['id'] == name:
+        if dict['pasw'] == contra:
+            name = dict['id']
             pasar = True
     if pasar:
         createTemporaryFile(name, contra)
-        print("puede pasar")
+        print("puede pasar, " + name)
+        
             
     else:
         print("no puede pasar")

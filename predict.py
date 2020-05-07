@@ -15,7 +15,7 @@ FRAME_THICKNESS = 3
 FONT_THICKNESS = 2
 MODEL = 'hog'  # default: 'hog', other one can be 'cnn' - CUDA accelerated (if available) deep-learning pretrained model
 
-video = cv2.VideoCapture(1) #could put in a filename
+video = cv2.VideoCapture() #could put in a filename
 
 kf = open('./pickle/known_faces','rb')
 kn = open('./pickle/known_names','rb')
