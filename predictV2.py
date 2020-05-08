@@ -4,6 +4,7 @@ import cv2
 import pickle
 import json
 import time
+import datetime
 #proba con el dump y el load
 
 KNOWN_FACES_DIR = './fotos/'
@@ -132,7 +133,8 @@ def predecir(name):
         cv2.destroyAllWindows()
         if success_count >= SUCCESS_NEEDED:
             print('Se abrio la puerta mirey')
-            
+            a = datetime.datetime.now()
+            print('El usuario ' + name + ' entro a las ' + str(a.strftime("%H:%M")))
         else:
             print('no se abrio un pingo, mishey')
 
