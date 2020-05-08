@@ -26,7 +26,7 @@ while True:
         # name = str(input("name: ")) #cara
         pasar = False
 
-        if len(str(contra)) == MINLENGTH:
+        if len(str(contra)) >= MINLENGTH:
             try:
                 c.execute("SELECT name FROM residents WHERE id={}".format(contra))
                 res = c.fetchone()
