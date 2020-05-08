@@ -1,53 +1,50 @@
-import sqlite3
-from sqlite3 import Error
-
-import os.path
-
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-db_path = os.path.join(BASE_DIR, "testdb.db")
-MINLENGTH = 6
-MAX_FAILURES = 5 #intuitivo.
-
-conn = sqlite3.connect(db_path)
-c = conn.cursor()
-c.execute("SELECT * FROM residents")
-res = c.fetchall()
-
-def createTemporaryFile(name,password):
-    temporaryFile= open("pass.txt","w+")
-    temporaryFile.write(name+'\n'+password)
-    temporaryFile.close()
+#Import .py files
+import predictV2
+import inputId
+import addExtraPics
+import trainPeroBien
+import trainPorSiAlgoAndaMal
+import check
+import check_2
+import remove
+#Imports
+import time
+import os
+import sys
 
 while True:
-    fallos = 0
-    while fallos < MAX_FAILURES:
+    decision = str(input("Quiere predecir? (Y/N/quit): "))
+    if decision.lower()== 'y':
+        predecir = True
+        if predecir == True:
+            inputId.inputear()
+        predecir = False
+        if os.path.exists('pass.txt'):
+            b,a,pito = predictV2.buscarArchivo()
+            predictV2.predecir(pito)
+            predecir = True
+    elif decision.lower() == 'n':
+        fileToRun = str(input("Que archivo quiere correr?: "))
+        # switch_dem(fileToRun)
+        if fileToRun == 'check':
+            check.checkeo()
+        elif fileToRun == 'trainNew':
+            trainPeroBien.trainearBien()
+        elif fileToRun == 'trainOld':
+            trainPorSiAlgoAndaMal.trainOld()
+        elif fileToRun == 'remove':
+            theInput = input("Nombre de carpeta a borrar: ")
+            remove.borrar(theInput)
+        elif fileToRun == 'addPics':
+            theInput = input("Nombre de carpeta a agregar fotos: ")
+            addExtraPics.nuevasFotos(theInput)
+        print('Altoke rey, termina10')
+    elif decision.lower() == 'quit':
+        print('Saludos Binarios!')
+        time.sleep(1)
+        sys.exit(0)
+        
 
-        contra = int(input("passw: "))
-        # name = str(input("name: ")) #cara
-        pasar = False
 
-        if len(str(contra)) >= MINLENGTH:
-            try:
-                c.execute("SELECT name FROM residents WHERE id={}".format(contra))
-                res = c.fetchone()
-                print('Bienvenido, ' + res[0])
-                fallos = 0
-                createTemporaryFile(res[0], str(contra))
-            except:
-                print('arafue')
-                fallos +=1
-                contra = None  
-                name = None
-                pasar = False 
-        else:
-            print("no puede pasar") 
-            fallos +=1
-        contra = None  
-        name = None
-        pasar = False 
-
-    else:
-        print('pip pip, sos gay')
-        #insert codigo de mandar alerta el porterowo
-        fallos = 0 
-
+    
+    

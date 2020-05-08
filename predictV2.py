@@ -5,9 +5,6 @@ import pickle
 import json
 import time
 #proba con el dump y el load
-jsonFile = open('sth.json')
-
-jsonParsed = json.load(jsonFile)
 
 KNOWN_FACES_DIR = './fotos/'
 #UNKNOWN_FACES_DIR = 'frecon/unknown/'
@@ -60,15 +57,7 @@ def buscarArchivo():
 
     return comparador,password,nombre
 
-while True:    
-    passExist = False
-
-    while not passExist:
-        passExist,psw,name = buscarArchivo()
-    print('Loading known faces...')
-
-
-    if passExist:
+def predecir(name):    
         success_count = 0
         for i in range(SELECTED_FRAMES):
             
