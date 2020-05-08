@@ -7,6 +7,7 @@ import trainPorSiAlgoAndaMal
 import check
 import check_2
 import remove
+import newUser
 #Imports
 import time
 import os
@@ -38,6 +39,8 @@ while True:
         elif fileToRun == 'addPics':
             theInput = input("Nombre de carpeta a agregar fotos: ")
             addExtraPics.nuevasFotos(theInput)
+        elif fileToRun == 'newId':
+            newUser.agregarUsuario()
         print('Altoke rey, termina10')
     elif decision.lower() == 'quit':
         print('Saludos Binarios!')
