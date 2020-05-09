@@ -19,7 +19,7 @@ import check
 import check_2
 import remove
 import newUser
-
+import sqlite3
 
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
@@ -28,12 +28,12 @@ APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 @app.route("/")
 def index():
-    return render_template("upload.html")
+    return render_template("home.html")
 
 
-@app.route("/upload", methods=["POST"])
+@app.route("/upload", methods=["GET","POST"])
 def upload():
-    
+    return render_template('upload.html')
     text = request.form['text']
 
     KNOWN_NAMES = f'{os.getcwd()}/fotos/'
@@ -81,6 +81,40 @@ def upload():
     
     return render_template("upload.html", image_name=filename)
 
+
+@app.route("/login",methods = ["GET","POST"])
+def login():
+    # return render_template("login.html")
+    try:
+        user = request.form['user']
+        password = request.form['password']
+        print(user)
+        print(password)
+        if inputId.inputear(password,user):
+            flash('Bienvenido, '+user+' que te contas?')
+            return render_template('home.html')
+             
+
+        else:
+            flash('not a valid username!, try again','warning')
+        return render_template('login.html')
+    except:
+        return render_template('login.html')
+
+@app.route("/register",methods = ["GET","POST"])
+def register():
+    try:
+        return render_template('register.html')
+    except:
+        pass
+
+
+@app.route("/home",methods = ["GET","POST"])
+def home():
+    try:
+        return render_template('home.html')
+    except:
+        pass
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
