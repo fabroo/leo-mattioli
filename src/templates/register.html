@@ -1,121 +1,156 @@
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Login</title>
-      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-      <script src="{{url_for('static',filename='js/app.js')}}"></script>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <!-- <link rel="stylesheet" type="text/css" href="css/custom.css"> -->
-      <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
-      <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
-      <!-- Bootstrap core CSS -->
-      <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Custom styles for this template -->
-      <link href="css/simple-sidebar.css" rel="stylesheet">
-   </head>
-   <body>
-      <!-- ACA -->
-      <div class="d-flex toggled" id="wrapper">
-         <!-- Sidebar -->
-         <div class="bg-light border-right" id="sidebar-wrapper">
-            <div class="sidebar-heading">Proyecto 4TO </div>
-            <div class="list-group list-group-flush">
-               <a href="#" class="list-group-item list-group-item-action bg-light">Perfil</a>
-               <a href="#" class="list-group-item list-group-item-action bg-light">Agregar Fotos</a>
-               <a href="#" class="list-group-item list-group-item-action bg-light">Sacar Fotos</a>
-               <a href="#" class="list-group-item list-group-item-action bg-light">Entrenar Modelo</a>
-               <a href="#" class="list-group-item list-group-item-action bg-light">About</a>
-               <a href="#" class="list-group-item list-group-item-action bg-light">Cerrar Sesión</a>
-            </div>
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Login</title>
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+      integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+      crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"></script>
+   <script src="{{url_for('static',filename='js/app.js')}}"></script>
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   <!-- <link rel="stylesheet" type="text/css" href="css/custom.css"> -->
+   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
+   <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
+   <!-- Bootstrap core CSS -->
+   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+   <!-- Custom styles for this template -->
+   <link href="css/simple-sidebar.css" rel="stylesheet">
+</head>
+
+<body>
+   <!-- ACA -->
+   <div class="d-flex toggled" id="wrapper">
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+         <div class="sidebar-heading">Proyecto 4TO </div>
+         <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action bg-light">Perfil</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Agregar Fotos</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Sacar Fotos</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Entrenar Modelo</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">About</a>
+            <a href="#" class="list-group-item list-group-item-action bg-light">Cerrar Sesión</a>
          </div>
-         <!-- /#sidebar-wrapper -->
-         <!-- Page Content -->
-         <div id="page-content-wrapper">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-               <button class="btn btn-info" id="menu-toggle"><i style="font-size:30px;width: 40px;" class="fa">&#xf0c9;</i></button>
-               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+         <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <button class="btn btn-info" id="menu-toggle"><i style="font-size:30px;width: 40px;"
+                  class="fa">&#xf0c9;</i></button>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+               aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                <span class="navbar-toggler-icon"></span>
-               </button>
-               <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                  <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                     <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                     </li>
-                     <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                     </li>
-                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+               <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                  <li class="nav-item active">
+                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Dropdown
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/login">Iniciar Sesión</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/register">Crear cuenta</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="/upload">Uplaod</a>
-                         </div>
-                     </li>
-                  </ul>
-               </div>
-            </nav>
-            <div class="container-fluid">
-               <br>
-               <div id="msg" style="width: 100%;text-align: center;">
-                  <p>  Complete con sus datos para comenzar!</p>
-                  {% for message in get_flashed_messages() %}
-                  <h3>{{ message }}</h3>
-                  {% endfor %}
-               </div>
-               <br>
-               <div class="container">
-                  <div class="row">
-                     <div class="col"></div>
-                     <div class="col-10">
-                        <form  autocomplete="off" action="{{ url_for('login') }}" method="post"  enctype="multipart/form-data">
-                           <div class="container">
-                              <div class="row">
-                                 <div class="col"></div>
-                                 <div class="col-8">
-                                    <input placeholder="insert company ID" type="text" name="user" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                                    <br>
-                                    <div class="contrainer">
-                                        <div class="row">
-                                            <div class="col"><input placeholder="mail" type="text" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"></div>
-                                    
-                                               
-                                            <div class="col"><input placeholder="full name" type="text" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg"></div>
-                                        
-                                        </div>
+                     </a>
+                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/login">Iniciar Sesión</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/register">Crear cuenta</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/upload">Upload</a>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </nav>
+         <div class="container-fluid">
+            <br>
+            <div id="msg" style="width: 100%;text-align: center;">
+               <p> Complete con sus datos para comenzar!</p>
+               {% for message in get_flashed_messages() %}
+               <h3>{{ message }}</h3>
+               {% endfor %}
+            </div>
+            <br>
+            <div class="container">
+               <div class="row">
+                  <div class="col"></div>
+                  <div class="col-10">
+                     <form autocomplete="off" action="{{ url_for('register') }}" method="POST"
+                        enctype="multipart/form-data">
+                        <div class="container">
+                           <div class="row">
+                              <div class="col"></div>
+                              <div class="col-8">
+                                 <input placeholder="Insert company ID" type="text" name="companyid" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                                 <br>
+                                 <div class="contrainer">
+                                    <div class="row">
+                                       <div class="col"><input placeholder="DNI" type="text" name="dni"
+                                             class="form-control" aria-label="Sizing example input"
+                                             aria-describedby="inputGroup-sizing-lg"></div>
+
+
+                                       <div class="col"><input placeholder="Full Name" type="text" name="fullname"
+                                             class="form-control" aria-label="Sizing example input"
+                                             aria-describedby="inputGroup-sizing-lg"></div>
+
                                     </div>
-                                    <br>
-                                    <input type="submit" class="btn btn-info boton-login" value="Login!" id="upload-button">
                                  </div>
-                                 <div class="col"></div>
+                                 <br>
+                                 <input placeholder="E-Mail" type="text" name="mail" class="form-control"
+                                    aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                                 <br>
+                                 <div class="container">
+                                    <div class="row">
+                                       <div class="col"></div>
+                                       <div class="col text-center"> 
+                                          <input type="submit" class="btn btn-info boton-login" value="Register!" id="upload-button">
+                                       </div>
+                                       <div class="col"></div>
+                                    </div>
+                                 </div>
+
+                                 
+                              </div>
+                              <div class="col">
+
+
                               </div>
                            </div>
-                        </form>
-                     </div>
-                     <div class="col"></div>
+                        </div>
+                     </form>
                   </div>
+                  <div class="col"></div>
                </div>
             </div>
          </div>
-         <!-- /#page-content-wrapper -->
       </div>
-      <!-- /#wrapper -->
-      <script src="app.js"></script>
-      <script>
-        $("#menu-toggle").click(function(e) {
+      <!-- /#page-content-wrapper -->
+   </div>
+   <!-- /#wrapper -->
+   <script src="app.js"></script>
+   <script>
+      $("#menu-toggle").click(function (e) {
          e.preventDefault();
          $("#wrapper").toggleClass("toggled");
-         });
-      </script>
-   </body>
+      });
+   </script>
+</body>
+
 </html>

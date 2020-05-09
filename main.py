@@ -18,7 +18,9 @@ while True:
     if decision.lower()== 'y':
         predecir = True
         if predecir == True:
-            inputId.inputear()
+            nombre = str(input('nombre: '))
+            contra = int(input('contra: '))
+            inputId.inputear(contra, nombre)
         predecir = False
         if os.path.exists('pass.txt'):
             b,a,pito = predictV2.buscarArchivo()
@@ -40,7 +42,11 @@ while True:
             theInput = input("Nombre de carpeta a agregar fotos: ")
             addExtraPics.nuevasFotos(theInput)
         elif fileToRun == 'newId':
-            newUser.agregarUsuario()
+            dni = str(input('Tu DNI: '))
+            name = str(input('Nuevo nombre: '))
+            mail = str(input("Tu E-Mail: "))
+            companyId = str(input("Compañia: "))
+            newUser.agregarUsuario(dni, name, mail, companyId)
         print('Altoke rey, termina10')
     elif decision.lower() == 'quit':
         print('Saludos Binarios!')

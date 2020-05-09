@@ -40,7 +40,7 @@ def inputear(contra,user):
         
         if len(str(contra)) >= MINLENGTH:
             try:
-                c.execute("SELECT name FROM residents WHERE id={}".format(contra))
+                c.execute("SELECT name FROM residents WHERE password={}".format(contra))
                 res = c.fetchone()
                 if res[0] == user.strip():
                     print('Bienvenido, ' + res[0])

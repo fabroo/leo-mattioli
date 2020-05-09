@@ -21,6 +21,14 @@ import remove
 import newUser
 import sqlite3
 
+import smtplib
+
+#
+gmail_user = 'you@gmail.com'
+gmail_password = 'P@ssword!'
+#
+
+
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -98,15 +106,32 @@ def login():
         else:
             flash('not a valid username!, try again','warning')
         return render_template('login.html')
-    except:
+    except Exception as err:
+        print('ESTE ES EL ERROR REY E' +str(err))
         return render_template('login.html')
 
 @app.route("/register",methods = ["GET","POST"])
 def register():
+    
+    # full_filename = f'{os.getcwd()}/fotos/bren_mom/brenmomm (1).jpeg' #os.path.join('\fotos\bren', '1.jpeg')
+    
+    # return render_template("register.html", user_image = full_filename)
+
     try:
-        return render_template('register.html')
-    except:
-        pass
+        idCompany = request.form.get('companyid',False)
+        dni = request.form.get('dni',False)
+        email = request.form.get('mail',False)
+        fullname = request.form.get('fullname',False)
+        if newUser.agregarUsuario(dni, fullname, email, idCompany):
+            flash("Cuenta creada con exito. Inicia Sesion arriba a la derecha. Bienvenido!")
+        else:
+            flash("P  E  B  E  T  E")
+        
+        
+    except Exception as err:
+        print('ESTE ES EL ERROR REY E' +str(err))
+    return render_template('register.html')
+
 
 
 @app.route("/home",methods = ["GET","POST"])
@@ -114,7 +139,7 @@ def home():
     try:
         return render_template('home.html')
     except:
-        pass
+        return render_template('home.html')
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

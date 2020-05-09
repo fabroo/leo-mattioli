@@ -17,6 +17,7 @@
       <!-- Bootstrap core CSS -->
       <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
       <!-- Custom styles for this template -->
+
       <link href="css/simple-sidebar.css" rel="stylesheet">
    </head>
    <body>
@@ -59,19 +60,18 @@
                            <div class="dropdown-divider"></div>
                            <a class="dropdown-item" href="/register">Crear cuenta</a>
                            <div class="dropdown-divider"></div>
-                           <a class="dropdown-item" href="/upload">Uplaod</a>
+                           <a class="dropdown-item" href="/upload">Upload</a>
                         </div>
                      </li>
                   </ul>
                </div>
             </nav>
             <div class="container-fluid">
-                <div id="msg" style="width: 100%;text-align: center;">
-        
-                    {% for message in get_flashed_messages() %}
-              <h3>{{ message }}</h3>
-            {% endfor %}
-                  </div>
+               <div id="msg" style="width: 100%;text-align: center;">
+                  {% for message in get_flashed_messages() %}
+                     <h3>{{ message }}</h3>
+                  {% endfor %}
+               </div>
             </div>
          </div>
          <!-- /#page-content-wrapper -->
