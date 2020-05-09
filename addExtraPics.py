@@ -21,7 +21,7 @@ def nuevasFotos(DESIGNATED_NAME):
     START = time.time()
     indiv_names = np.unique(known_names)
 
-    NEW_FACES= './new_faces/'
+    NEW_FACES= './src/images/'
 
 
     for name in os.listdir(NEW_FACES):

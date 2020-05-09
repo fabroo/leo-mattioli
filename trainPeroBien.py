@@ -18,7 +18,7 @@ def trainearBien():
     kn.close()
     new_faces_array = []
     new_names_array = []
-    NEW_FACES= './new_faces/'
+    NEW_FACES= './src/images/'
 
     for i in range(len(known_names)):
         known_names[i].rstrip('\r\n')
@@ -30,6 +30,7 @@ def trainearBien():
             image = face_recognition.load_image_file(f'{NEW_FACES}/{name}/{filename}')
             try:
                 encoding = face_recognition.face_encodings(image)[0]
+                new_faces_array.append(encoding)
 
             except:
                 print("peto: "+str(filename))
@@ -39,7 +40,7 @@ def trainearBien():
 
                 shutil.move(f'{NEW_FACES}/{name}/{filename}',f'{dir_error}/{name}/{filename}')
                 
-            new_faces_array.append(encoding)
+            
             new_names_array.append(name)
         dir_done = './fotos/'
         shutil.move(f'{NEW_FACES}/{name}',f'{dir_done}/{name}')
