@@ -20,3 +20,5 @@ def checkeo():
 
     print(str(len(known_names)) + ' pito ' + str(len(known_faces)))
 
+
+

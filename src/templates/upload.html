@@ -75,7 +75,13 @@
             
             </div>
             <br>
-            <div id="msg" style="width: 100%;text-align: center;"><h4 >Elige los archivos aquí abajo</h4></div>
+            <div id="msg" style="width: 100%;text-align: center;">
+             
+              <h4 >Elige los archivos aquí abajo</h4>
+              {% for message in get_flashed_messages() %}
+        <h3>{{ message }}</h3>
+    {% endfor %}
+            </div>
             <br>
             <div class="input-group">
                 <div class="custom-file">
@@ -177,12 +183,4 @@
     } );
 
 </script>
-<!-- 
-<script>
-function alerta(mensaje){
-alert(mensaje)
-}
-el = document.getElementById('upload-button');
-el.addEventListener("click", alerta('Imagenes Subidas!')); 
-</script> -->
 </html>

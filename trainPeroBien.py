@@ -31,6 +31,7 @@ def trainearBien():
             try:
                 encoding = face_recognition.face_encodings(image)[0]
                 new_faces_array.append(encoding)
+                new_names_array.append(name)
 
             except:
                 print("peto: "+str(filename))
@@ -41,7 +42,7 @@ def trainearBien():
                 shutil.move(f'{NEW_FACES}/{name}/{filename}',f'{dir_error}/{name}/{filename}')
                 
             
-            new_names_array.append(name)
+           
         dir_done = './fotos/'
         shutil.move(f'{NEW_FACES}/{name}',f'{dir_done}/{name}')
 
