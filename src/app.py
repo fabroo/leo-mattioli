@@ -6,7 +6,6 @@ __author__ = 'ibininja'
 
 import sys
 from pathlib import Path
-import gmail
 
 
 sys.path.insert(1, os.getcwd())
