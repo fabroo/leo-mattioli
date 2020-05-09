@@ -6,6 +6,7 @@ __author__ = 'ibininja'
 
 import sys
 from pathlib import Path
+import gmail
 
 
 sys.path.insert(1, os.getcwd())
@@ -20,15 +21,10 @@ import check_2
 import remove
 import newUser
 import sqlite3
-
 import smtplib
-
+from email.mime.text import MIMEText
 #
-gmail_user = 'you@gmail.com'
-gmail_password = 'P@ssword!'
-#
-
-
+import ssl
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -117,6 +113,8 @@ def register():
     
     # return render_template("register.html", user_image = full_filename)
 
+    
+
     try:
         idCompany = request.form.get('companyid',False)
         dni = request.form.get('dni',False)
@@ -126,11 +124,10 @@ def register():
             flash("Cuenta creada con exito. Inicia Sesion arriba a la derecha. Bienvenido!")
         else:
             flash("P  E  B  E  T  E")
-        
-        
     except Exception as err:
         print('ESTE ES EL ERROR REY E' +str(err))
     return render_template('register.html')
+
 
 
 
