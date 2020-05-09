@@ -24,50 +24,55 @@ def agregarUsuario(dni, name, mail, companyId):
     # name = str(input('Nuevo nombre: '))
     # mail = str(input("Tu E-Mail: "))
 
-    c.execute(f'''SELECT dni FROM residents WHERE company = '{companyId}' ''')
+    c.execute(f'''SELECT dni FROM residents WHERE companyid = '{companyId}' ''')
     dniList = c.fetchall()
     dniListClean = []
     for el in dniList:
         el = str(el)
         el = el[:-2]
         el = el[1:]
-    dniListClean.append(el)
+        dniListClean.append(el)
     if dni in dniListClean:
-        hayFotos = False
-        for dirname in os.listdir(KNOWN_FACES):
-            if dirname == dni:
-                hayFotos = True
-        if hayFotos:
-            print('Ya hay fotos tuyas entrenadas.')
+        c.execute(f''' SELECT createdAccount FROM residents WHERE dni = {int(dni)}; ''')
+        accCreated = str(c.fetchone())
+        if accCreated == '(0,)':
+            hayFotos = False
+            for dirname in os.listdir(KNOWN_FACES):
+                if dirname == dni:
+                    hayFotos = True
+            if hayFotos:
+                print('Ya hay fotos tuyas entrenadas.')
+            else:
+                print('No hay fotos tuyas. Recuerda cargarlas cuando termines de crear tu cuenta.')
+            
+            contra = randomPass(7)
+
+            c.execute(f''' UPDATE residents SET name = '{name}', password = {contra}, email = '{mail}', accountCreated = 1  WHERE dni = {int(dni)} ''')
+            print('Bienvenido ' + name + ', con DNI: '+ dni +', y E-Mail: '+ mail + '. Se te asignó la contraseña: ' + str(contra))
+            conn.commit()
+            
+            # context = ssl.SSLContext(ssl.PROTOCOL_SSLv3)
+
+            smtp_ssl_host = 'smtp.gmail.com'  # smtp.mail.yahoo.com
+            smtp_ssl_port = 465
+            username = 'mattiolilearning@gmail.com'
+            password = 'mattioli123'
+            sender = 'mattiolilearning@gmail.com'
+            targets = mail
+
+            msg = MIMEText(f'Buenas Tardes, señor usuario. Sele informa que mi nombre es lionel mesi asuser vicio \nEn esta ocasion vengo a decirle que su contraseña es: {str(contra)}\nNo seas facha y cuidala porque si no te hacen el rancho y no esta bueno eso, me paso una vez y no lo recomiendo dale wachin te mando besos, saludame a la nena de mi parte\nBesos!')
+            msg['Subject'] = 'Cuenta nueva registrada en Mattioli Learning'
+            msg['From'] = sender
+            msg['To'] = targets
+
+            server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
+            server.login(username, password)
+            server.sendmail(sender, targets, msg.as_string())
+            server.quit()
+        
+            return True
         else:
-            print('No hay fotos tuyas. Recuerda cargarlas cuando termines de crear tu cuenta.')
-        
-        contra = randomPass(7)
-
-        c.execute(f''' UPDATE residents SET name = '{name}', password = {contra}, email = '{mail}'  WHERE dni = {int(dni)} ''')
-        print('Bienvenido ' + name + ', con DNI: '+ dni +', y E-Mail: '+ mail + '. Se te asignó la contraseña: ' + str(contra))
-        conn.commit()
-        
-        # context = ssl.SSLContext(ssl.PROTOCOL_SSLv3)
-
-        smtp_ssl_host = 'smtp.gmail.com'  # smtp.mail.yahoo.com
-        smtp_ssl_port = 465
-        username = 'mattiolilearning@gmail.com'
-        password = 'mattioli123'
-        sender = 'mattiolilearning@gmail.com'
-        targets = mail
-
-        msg = MIMEText(f'Buenas Tardes, señor usuario. Sele informa que mi nombre es lionel mesi asuser vicio \nEn esta ocasion vengo a decirle que su contraseña es: {str(contra)}\nNo seas facha y cuidala porque si no te hacen el rancho y no esta bueno eso, me paso una vez y no lo recomiendo dale wachin te mando besos, saludame a la nena de mi parte\nBesos!')
-        msg['Subject'] = 'Cuenta nueva registrada en Mattioli Learning'
-        msg['From'] = sender
-        msg['To'] = targets
-
-        server = smtplib.SMTP_SSL(smtp_ssl_host, smtp_ssl_port)
-        server.login(username, password)
-        server.sendmail(sender, targets, msg.as_string())
-        server.quit()
-       
-        return True
+            return False
     else:
         print(' no estas autorizado aca mirey')
         return False
