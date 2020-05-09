@@ -78,8 +78,8 @@ def upload():
     except:
          flash('Amigo se cayo todo sorry cambia de empresa..')
     
-    #flash("This is a warning", "warning")
-    # return send_from_directory("images", filename, as_attachment=True)
+    flash("This is a warning", "warning")
+    return send_from_directory("images", filename, as_attachment=True)
    
     return render_template("upload.html", image_name=filename)
 
