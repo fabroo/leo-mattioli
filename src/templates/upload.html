@@ -35,6 +35,7 @@
   <div class="d-flex toggled" id="wrapper">
 
     <!-- Sidebar -->
+   <form action="{{url_for('closeSess')}}" method="post">
     <div class="bg-light border-right" id="sidebar-wrapper">
       <div class="sidebar-heading">Proyecto 4TO </div>
       <div class="list-group list-group-flush">
@@ -43,9 +44,11 @@
         <a href="#" class="list-group-item list-group-item-action bg-light">Sacar Fotos</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">Entrenar Modelo</a>
         <a href="#" class="list-group-item list-group-item-action bg-light">About</a>
-        <a href="#" class="list-group-item list-group-item-action bg-light">Cerrar Sesión</a>
+        <!-- <a href="#" class="list-group-item list-group-item-action bg-light">Cerrar Sesión</a> -->
+        <input  class="list-group-item list-group-item-action bg-light" type="submit" value="cerrar session">
       </div>
     </div>
+   </form>
     <!-- /#sidebar-wrapper -->
 
     <!-- Page Content -->
@@ -84,6 +87,14 @@
 
       <div class="container-fluid">
         <h1 style="font-size: 3em;text-align: center;margin: 5vh auto;">Bienvenido a la plantilla de Agregado de Imágenes</h1>
+        <div class="container">
+          <h1 class="title">
+            {{g.user.fullname}}'s Profile
+          </h1>
+          <h2 class="subtitle">
+            You are user number #{{g.user.id}}
+          </h2>
+        </div>
         <div class="row">
             <div class="col">
 
