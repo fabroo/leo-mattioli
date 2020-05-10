@@ -120,7 +120,7 @@ def upload():
 @app.route('/close_sess', methods=['GET', 'POST'])
 def closeSess():
     session.pop('user_id', None)
-    return render_template('login.html')
+    return render_template('index.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
