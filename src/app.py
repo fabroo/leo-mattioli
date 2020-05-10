@@ -49,7 +49,11 @@ for el in pakesepa:
 
 @app.route("/")
 def index():
-    return render_template("home.html")
+    if 'user_id' in session:
+        user = [x for x in userList if x.id == session['user_id']][0]
+        g.user = user
+        return render_template("index_logged.html")
+    return render_template("index.html")
 
 @app.before_request
 def before_request():
@@ -131,7 +135,8 @@ def login():
         if inputId.inputear(password,username):
             user = [x for x in userList if x.fullname == username][0]
             session['user_id'] = user.id
-            return render_template('home.html')
+            g.user = user
+            return render_template('index_logged.html')
 
         else:
             flash('not a valid username!, try again','warning')
@@ -154,8 +159,8 @@ def register():
         fullname = request.form.get('fullname',False)
         if newUser.agregarUsuario(dni, fullname, email, idCompany):
             flash("Cuenta creada con exito. Inicia Sesion arriba a la derecha. Bienvenido!")
-        else:
-            flash("P  E  B  E  T  E")
+        # else:
+        #     flash("P  E  B  E  T  E")
     except Exception as err:
         print('ESTE ES EL ERROR REY E' +str(err))
     return render_template('register.html')
@@ -166,9 +171,17 @@ def register():
 @app.route("/home",methods = ["GET","POST"])
 def home():
     try:
-        return render_template('home.html')
+        if 'user_id' in session:
+            user = [x for x in userList if x.id == session['user_id']][0]
+            g.user = user
+            return render_template("index_logged.html")
+        return render_template('index.html')
     except:
-        return render_template('home.html')
+        if 'user_id' in session:
+            user = [x for x in userList if x.id == session['user_id']][0]
+            g.user = user
+            return render_template("index_logged.html")
+        return render_template('index.html')
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
