@@ -183,5 +183,17 @@ def home():
             return render_template("index_logged.html")
         return render_template('index.html')
 
+
+@app.route('/admin')
+def about():
+    
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    c.execute("SELECT * FROM residents")
+    res = c.fetchall()
+    print(res)
+
+    return render_template("admin.html", todo = res)
+
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

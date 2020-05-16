@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <style>
+        .table td {
+   text-align: center;   
+}
+        .table th {
+   text-align: center;   
+}
+    </style>
+<div class="container">
+    <table class="table  table-hover ">
+            <th>NOMBRE</th>
+            <th>DNI</th>
+            <th>Password</th>
+            <th>E-Mail</th>
+            <th>COMPANY ID</th>
+            <th>IMG</th>
+            
+        </thead>
+        
+        {% for elem in todo %}
+            <tr>
+            <td>{{ elem[1] }}</td>
+            <td>{{ elem[0] }}</td>
+            <td>{{ elem[2] }}</td>
+            <td>{{ elem[3] }}</td>
+            <td>{{ elem[4] }}</td>
+            <td><img src="{{elem[6]}}" alt="" style="height: 10%;width: auto;" ></td>
+
+
+           
+            </tr>
+        {% endfor %}
+
+    </table>
+</div>
+</body>
+</html>
