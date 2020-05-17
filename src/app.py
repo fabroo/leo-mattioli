@@ -70,52 +70,53 @@ def upload():
     if not g.user:
         return render_template('login.html')
     else:
-        return render_template('upload.html')
-        text = request.form['text']
+        if request.method == 'POST':
+            texto = request.form['nombre']
 
-        KNOWN_NAMES = f'{os.getcwd()}/fotos/'
-        existe = False
+            KNOWN_NAMES = f'{os.getcwd()}/fotos'
+            existe = False
 
-        target = os.path.join(APP_ROOT,'images/'+str(text)+'')
-        print(target)
-        
-        if not os.path.isdir(target):
-            os.mkdir(target)
-        print(request.files.getlist("file"))
+            target = os.path.join(APP_ROOT, 'images/' + str(texto)+'')
+            print(target)
+            
+            if not os.path.isdir(target):
+                os.mkdir(target)
+            print(request.files.getlist("file"))
 
 
-        for upload in request.files.getlist("file"):
-            print(upload)
-            print("{} is the file name".format(upload.filename))
-            filename = upload.filename
-            # This is to verify files are supported
-            ext = os.path.splitext(filename)[1]
-            if (ext == ".jpg") or (ext == ".png"):
-                print("File supported moving on...")
-            else:
-                render_template("Error.html", message="Files uploaded are not supported...")
-            destination = "/".join([target, filename])
-            print("Accept incoming file:", filename)
-            print("Save it to:", destination)
-            upload.save(destination)
+            for upload in request.files.getlist("file"):
+                print(upload)
+                print("{} is the file name".format(upload.filename))
+                filename = upload.filename
+                # This is to verify files are supported
+                ext = os.path.splitext(filename)[1]
+                if (ext == ".jpg") or (ext == ".png"):
+                    print("File supported moving on...")
+                else:
+                    render_template("error.html", message="Files uploaded are not supported...")
+                destination = "/".join([target, filename])
+                print("Accept incoming file:", filename)
+                print("Save it to:", destination)
+                upload.save(destination)
 
-        for folder_name in KNOWN_NAMES:
-            if text == folder_name:
-                existe = True
-        
-        try:
-            if existe:
-                print('Ya existe un directorio con tu nombre, agregando nuevas fotos...')
-                addExtraPics.nuevasFotos(text) #usa el autocomplete, y esta funcion toma name como argumento
-                flash('Ya se ejecutó y todo salio bien segui viviendo')
-            else:
-                print('Nuevo directorio, entrenando reconocimiento facial...')
-                trainPeroBien.trainearBien()#creo que era??
-                flash('Ya se ejecutó y todo salio bien segui viviendo')
-        except:
-            flash('Amigo se cayo todo sorry cambia de empresa..')
+            for folder_name in KNOWN_NAMES:
+                if texto == folder_name:
+                    existe = True
+            
+            try:
+                if existe:
+                    print('Ya existe un directorio con tu nombre, agregando nuevas fotos...')
+                    addExtraPics.nuevasFotos(texto) #usa el autocomplete, y esta funcion toma name como argumento
+                    flash('Ya se ejecutó y todo salio bien segui viviendo')
+                else:
+                    print('Nuevo directorio, entrenando reconocimiento facial...')
+                    trainPeroBien.trainearBien()#creo que era??
+                    flash('Ya se ejecutó y todo salio bien segui viviendo')
+            except:
+                flash('Amigo se cayo todo sorry cambia de empresa..')
+    return render_template("upload.html")
     
-    return render_template("upload.html", image_name=filename)
+    
 
 @app.route('/close_sess', methods=['GET', 'POST'])
 def closeSess():

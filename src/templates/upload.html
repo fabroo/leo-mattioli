@@ -101,13 +101,13 @@
             </div>
             <div class="col-8">
               
-              <form id="upload-form" action="{{ url_for('upload') }}" method="POST" enctype="multipart/form-data">
+              <form id="upload-form" action="{{ url_for('upload') }}" method="post" enctype="multipart/form-data">
                   <h1>Files:</h1><br>
                   <div class="input-group input-group-lg">
                       <div class="input-group-prepend">
                         <span class="input-group-text" id="inputGroup-sizing-lg">Name</span>
                       </div>
-                      <input type="text" name="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                      <input required placeholder="Ingrese nombre" type="text" name="nombre" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                 
                   
                   </div>
