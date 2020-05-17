@@ -27,6 +27,9 @@ import ssl
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+print(APP_ROOT)
+
+
 
 class User:
     def __init__(self, id, fullName, contra, mail):
@@ -154,12 +157,26 @@ def register():
     
 
     try:
+        targetReg = (f'{APP_ROOT}\\static\\assets\\pfp')
+        print(targetReg)
         idCompany = request.form.get('companyid',False)
         dni = request.form.get('dni',False)
         email = request.form.get('mail',False)
         fullname = request.form.get('fullname',False)
-        if newUser.agregarUsuario(dni, fullname, email, idCompany):
+        pfpPath = f'static/assets/pfp/{dni}.jpg'
+        pfp = request.files.get('file')
+        filename = pfp.filename
+        print(filename)
+        filenameNew = f'{dni}.jpg'
+        ext = os.path.splitext(filename)[1]
+        if (ext == ".jpg"):
+            print("File supported moving on...")
+        else:
+            render_template("error.html", message="Files uploaded are not supported...")
+        destination = "/".join([targetReg, filenameNew])
+        if newUser.agregarUsuario(dni, fullname, email, idCompany,pfpPath):
             flash("Cuenta creada con exito. Inicia Sesion arriba a la derecha. Bienvenido!")
+        pfp.save(destination)
         # else:
         #     flash("P  E  B  E  T  E")
     except Exception as err:

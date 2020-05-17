@@ -5,7 +5,7 @@ from random import randint
 import smtplib
 from email.mime.text import MIMEText
 
-def agregarUsuario(dni, name, mail, companyId):
+def agregarUsuario(dni, name, mail, companyId, pfpath):
     def randomPass(n):
         a = ''
         for i in range(n):
@@ -47,7 +47,7 @@ def agregarUsuario(dni, name, mail, companyId):
             
             contra = randomPass(7)
 
-            c.execute(f''' UPDATE residents SET name = '{name}', password = {contra}, email = '{mail}', createdAccount = 1  WHERE dni = {int(dni)} ''')
+            c.execute(f''' UPDATE residents SET name = '{name}', password = {contra}, email = '{mail}', createdAccount = 1, imagen = '{pfpath}'  WHERE dni = {int(dni)} ''')
             print('Bienvenido ' + name + ', con DNI: '+ dni +', y E-Mail: '+ mail + '. Se te asignó la contraseña: ' + str(contra))
             conn.commit()
             
