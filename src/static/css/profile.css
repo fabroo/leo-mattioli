@@ -1,3 +1,12 @@
 .cardThingy{
-    margin: 70px 20px;
+    margin: 30px 0;
+}
+.fotasa{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    margin-top: 10px;
+}
+.paddTop{
+    padding-top: 20px;
 }

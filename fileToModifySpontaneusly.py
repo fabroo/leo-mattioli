@@ -10,13 +10,15 @@ import time
 import smtplib
 from email.mime.text import MIMEText
 
-text="Bruno Tievoli"
+BASE_DIR = os.getcwd()
+db_path = os.path.join(BASE_DIR, "testdb.db")
 
-KNOWN_NAMES = f'{os.getcwd()}/fotos'
-existe = False
+conn = sqlite3.connect(db_path)
+c = conn.cursor()
+c.execute(f"SELECT * FROM residents WHERE dni = 45583265")
+res = c.fetchone()
 
-target = (f"{KNOWN_NAMES}/{str(text)}")
-print(target)
+print(res[1])
 
 
 

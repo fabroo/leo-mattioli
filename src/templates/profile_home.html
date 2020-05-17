@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
     <script src="{{url_for('static', filename='js/materialize.min.js')}}"></script>
+    
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -17,33 +19,59 @@
         </div>
     </nav>
     <ul id="slide-out" class="sidenav">
-      <li>
+      <li><div class="user-view">
         
-        <div class="user-view">
-        
+        <img src="{{info[6]}}" class="circle fotasa" alt="">
+        <a href="#name"><span class="black-text name">{{info[1]}}</span></a>
+        <a href="#email"><span class="black-text email">{{info[3]}}</span></a>
+      </div></li>
 
-      
-        </div>
-
-      </li>
-    </li>
-      <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-      <li><a href="#!">Second Link</a></li>
       <li><div class="divider"></div></li>
-      <li><a class="subheader">Subheader</a></li>
-      <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
-      <div class="background">
-        <img src="images/office.jpg">
-      </div>
+      <!-- <li><a class="subheader">Subheader</a></li> -->
+      <li><a class="waves-effect" href="/upload"> <i class="material-icons">add_a_photo</i> Subir fotos nuevas</a></li>
+      <li><a class="waves-effect" href="#!"> <i class="material-icons">assignment_ind</i> Tu registro de entradas</a></li>
+      <li><a class="waves-effect" href="/close_sess"> <i class="material-icons">keyboard_return</i> Cerrar Sesión</a></li>
     
-      <p ><img class="circle" src=" {{info[6]}} "></a>
-      <p ><span class="black-text name"> {{info[1]}} </span></p>
-      <p ><span class="black-text email"> {{info[2]}} </span></p>
     </ul>
     
-    <div class="row">
-      <img src="{{info[6]}}" class="circle" alt="">
-      <div class="col s6 offset-s3 white z-depth-2 cardThingy"><span class="flow-text">Bienvenido, {{info}}</span></div>
+    <div class="row cardThingy">
+      <div class="col s6 offset-s3 blue z-depth-2">
+          <h5 class="center-align white-text">Tu Perfil</h5>
+      </div>
+      <div class="col s6 offset-s3 white z-depth-2">
+        <div class="row">
+          <div class="row">
+            <div class="col s8 offset-s2">
+              <div class="center-align">
+                <img src="{{info[6]}}" class="circle fotasa" alt="">
+              </div>              
+            </div>
+          </div>
+          <div class="row">
+            <div class="col s8 offset-s2 center-align ">
+              <h5 class="center-align" >Bienvenido, {{info[1]}}!</h5>
+            </div>
+          </div>
+          
+        </div>
+        <div class="row">
+          <div class="col s12 collection">
+              <div class="row collection-item">
+                <div class="col s4"><b>DNI:</b></div>
+                <div class="col s8">{{info[0]}}</div>
+              </div>
+              <div class="row collection-item">
+                <div class="col s4"><b>Contraseña:</b></div>
+                <div class="col s8">{{info[2]}}</div>
+              </div>
+              <div class="row collection-item">
+                <div class="col s4"><b>Modelo Entrenado</b></div>
+                <div class="col s8">{{picsvar}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     
 

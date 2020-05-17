@@ -102,9 +102,8 @@ def upload():
                 print("Save it to:", destination)
                 upload.save(destination)
 
-            for folder_name in KNOWN_NAMES:
-                if texto == folder_name:
-                    existe = True
+            if os.path.exists(f'{KNOWN_NAMES}/{texto}'):
+                existe = True
             
             try:
                 if existe:
@@ -124,7 +123,7 @@ def upload():
 @app.route('/close_sess', methods=['GET', 'POST'])
 def closeSess():
     session.pop('user_id', None)
-    return render_template('index.html')
+    return render_template('login.html')
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -201,15 +200,19 @@ def home_log():
     if not g.user:
         return render_template('login.html')
     else:
-
-        # print(g.user.id)
+        KNOWN_NAMES = f'{os.getcwd()}/fotos/'
+        pics = 'No'
+        
+        print(g.user.id)
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
         c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
-        res = c.fetchall()
-        print(res[0:2])
+        res = c.fetchone()
+        print(res[0])
+        if os.path.exists(f'{KNOWN_NAMES}/{res[1]}'):                
+            pics = 'Si'
 
-        return render_template('profile_home.html', info = res)
+        return render_template('profile_home.html', info = res, picsvar = pics)
 
 @app.route('/admin')
 def about():
