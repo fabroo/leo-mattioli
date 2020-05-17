@@ -149,12 +149,7 @@ def login():
 
 @app.route("/register",methods = ["GET","POST"])
 def register():
-    
-    # full_filename = f'{os.getcwd()}/fotos/bren_mom/brenmomm (1).jpeg' #os.path.join('\fotos\bren', '1.jpeg')
-    
-    # return render_template("register.html", user_image = full_filename)
-
-    
+ 
 
     try:
         targetReg = (f'{APP_ROOT}\\static\\assets\\pfp')
@@ -203,7 +198,18 @@ def home():
 
 @app.route("/home_log")
 def home_log():
-    return render_template('profile_home.html')
+    if not g.user:
+        return render_template('login.html')
+    else:
+
+        # print(g.user.id)
+        conn = sqlite3.connect(db_path)
+        c = conn.cursor()
+        c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
+        res = c.fetchall()
+        print(res[0:2])
+
+        return render_template('profile_home.html', info = res)
 
 @app.route('/admin')
 def about():

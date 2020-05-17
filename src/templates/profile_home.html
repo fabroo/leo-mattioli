@@ -17,23 +17,33 @@
         </div>
     </nav>
     <ul id="slide-out" class="sidenav">
-      <li><div class="user-view">
-        <div class="background">
-          <img src="images/office.jpg">
+      <li>
+        
+        <div class="user-view">
+        
+
+      
         </div>
-        <a href="#user"><img class="circle" src="images/yuna.jpg"></a>
-        <a href="#name"><span class="white-text name">John Doe</span></a>
-        <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
-      </div></li>
+
+      </li>
+    </li>
       <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
       <li><a href="#!">Second Link</a></li>
       <li><div class="divider"></div></li>
       <li><a class="subheader">Subheader</a></li>
       <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+      <div class="background">
+        <img src="images/office.jpg">
+      </div>
+    
+      <p ><img class="circle" src=" {{info[6]}} "></a>
+      <p ><span class="black-text name"> {{info[1]}} </span></p>
+      <p ><span class="black-text email"> {{info[2]}} </span></p>
     </ul>
     
     <div class="row">
-      <div class="col s6 offset-s3 white z-depth-2 cardThingy"><span class="flow-text">6-columns (offset-by-6)</span></div>
+      <img src="{{info[6]}}" class="circle" alt="">
+      <div class="col s6 offset-s3 white z-depth-2 cardThingy"><span class="flow-text">Bienvenido, {{info}}</span></div>
     </div>
     
 
