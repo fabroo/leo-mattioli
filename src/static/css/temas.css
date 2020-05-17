@@ -1,0 +1,24 @@
+/*sidenav    user-view     bakcgroudn     circle     subheader      sidenav-trigger        wasves effect           divider*/
+.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-small, .btn-floating, .dropdown-content, .collapsible, .sidenav {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  }
+  .sidenav span.badge {
+    margin-top: calc(24px - 11px);
+  }
+  @media only screen and (min-width: 993px) {
+    nav a.sidenav-trigger {
+      display: none;
+    }
+  }
+  nav .sidenav-trigger {
+    float: left;
+    position: relative;
+    z-index: 1;
+    height: 56px;
+    margin: 0 18px;
+  }
+  nav .sidenav-trigger i {
+    height: 56px;
+    line-height: 56px;
+  }

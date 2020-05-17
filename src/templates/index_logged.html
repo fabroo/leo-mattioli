@@ -14,6 +14,9 @@
         <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
         <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/custom.css') }}">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
@@ -38,35 +41,37 @@
             }
         </style>
         <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-            <div class="container">
+        
+            <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-shrink" id="mainNav">
+                <div class="container">
                 <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{ url_for('static', filename='assets/img/navbar-logo.png') }}" /></a><button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">Menu<i class="fas fa-bars ml-1"></i></button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Aplicación</a></li>
-                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Nosotros</a></li>
-                        
-                        <li class="nav-item">
-                            <form action="{{url_for('closeSess')}}" method="post">
-                                <input class="nav-link js-scroll-trigger cerrar-sesion" type="submit" value="Cerrar Sesion">
-                            </form>
-                        </li>
-                    </ul>
+
+
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav text-uppercase ml-auto">
+                            
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#services">Aplicación</a></li>
+                            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#team">Nosotros</a></li>
+                            
+                            <li class="nav-item">
+                                <form action="{{url_for('closeSess')}}" method="post">
+                                    <input class="nav-link js-scroll-trigger cerrar-sesion" type="submit" value="Cerrar Sesion">
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>   
+        
         <!-- Masthead-->
         <header class="masthead">
             <div class="container">
                 <div class="masthead-subheading">Buenas!</div>
                 <div class="masthead-heading text-uppercase">Bienvenido, <br> {{g.user.fullname}}</div>
-                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger boton-breo" href="#services">Lorem</a>
+                <a class="btn btn-primary btn-xl text-uppercase js-scroll-trigger boton-breo" href="/home_log">Ir a tu perfil</a>
             </div>
         </header>
 
-       
-        <!-- Services-->
         <!-- Services-->
         <section class="page-section" id="services">
             <div class="container" >
@@ -135,6 +140,7 @@
                 </div>
             </div>
         </section>
+    
        
         <!-- Footer-->
         <footer class="footer py-4">
@@ -207,19 +213,12 @@
         target: "#mainNav",
         offset: 74,
     });
-
+        
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+    $("#wrapper").toggleClass("toggled");
+    });
     // Collapse Navbar
-    var navbarCollapse = function () {
-        if ($("#mainNav").offset().top > 100) {
-            $("#mainNav").addClass("navbar-shrink");
-        } else {
-            $("#mainNav").removeClass("navbar-shrink");
-        }
-    };
-    // Collapse now if page is not at top
-    navbarCollapse();
-    // Collapse the navbar when page is scrolled
-    $(window).scroll(navbarCollapse);
 })(jQuery); // End of use strict
 
       </script>

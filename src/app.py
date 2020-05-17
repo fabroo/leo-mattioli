@@ -201,6 +201,9 @@ def home():
             return render_template("index_logged.html")
         return render_template('index.html')
 
+@app.route("/home_log")
+def home_log():
+    return render_template('profile_home.html')
 
 @app.route('/admin')
 def about():
