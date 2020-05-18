@@ -24,12 +24,14 @@
         <img src="{{info[6]}}" class="circle fotasa" alt="">
         <a href="#name"><span class="black-text name">{{info[1]}}</span></a>
         <a href="#email"><span class="black-text email">{{info[3]}}</span></a>
+        <a href="#email"><span class="black-text email">{{info[7]}}</span></a>
       </div></li>
 
       <li><div class="divider"></div></li>
       <!-- <li><a class="subheader">Subheader</a></li> -->
       <li><a class="waves-effect" href="/upload"> <i class="material-icons">add_a_photo</i> Subir fotos nuevas</a></li>
       <li><a class="waves-effect" href="#!"> <i class="material-icons">assignment_ind</i> Tu registro de entradas</a></li>
+      <li><a class="waves-effect" href="/home_log"> <i class="material-icons">account_circle</i>Perfil</a></li>
       <li><a class="waves-effect" href="/close_sess"> <i class="material-icons">keyboard_return</i> Cerrar Sesión</a></li>
     
     </ul>
@@ -68,6 +70,10 @@
                 <div class="col s4"><b>Modelo Entrenado</b></div>
                 <div class="col s8">{{picsvar}}</div>
               </div>
+              <div class="row collection-item">
+                <div class="col s4"><b>Jerarquía</b></div>
+                <div class="col s8">{{info[7]}}</div>
+              </div>
             </div>
           </div>
         </div>
@@ -80,7 +86,29 @@
             var elems = document.querySelectorAll('.sidenav');
             var options;
             var instances = M.Sidenav.init(elems, options);
-        });       
+        });
+        window.onload = function(){
+        var role = "{{info[7]}}"
+        var deDonde = "{{noCapo}}"
+          if (deDonde == "a"){
+            alert("Cucha mi rey no tenes admin, quien te crees que sos")
+          }
+          if (role == "Administrador"){
+              var list = document.createElement("li");
+              var link = document.createElement("a")
+              var icono = document.createElement("i")
+              link.href = "/admin"
+              link.innerHTML = "Miembros"
+              link.classList.add("waves-effect");
+              icono.classList.add("material-icons")
+              icono.innerHTML = "book"
+              link.appendChild(icono)
+              list.appendChild(link)
+
+              var unordered = document.getElementById("slide-out");
+              unordered.insertBefore(list, unordered.childNodes[4]);
+          }
+      }       
     </script>
 </body>
 

@@ -28,15 +28,16 @@ app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 print(APP_ROOT)
-
+KNOWN_NAMES = f'{os.getcwd()}/fotos'
 
 
 class User:
-    def __init__(self, id, fullName, contra, mail):
+    def __init__(self, id, fullName, contra, mail, role):
         self.id = id
         self.fullname = fullName
         self.contra = contra
         self.mail = mail
+        self.role = role
 
 comm = sqlite3.connect
 BASE_DIR = os.getcwd()
@@ -48,7 +49,7 @@ c.execute(f'''SELECT * FROM residents''')
 pakesepa = c.fetchall()
 userList = []
 for el in pakesepa:
-    userList.append(User(id=str(el[0]),fullName = str(el[1]),contra=str(el[2]),mail=str(el[3])))
+    userList.append(User(id=str(el[0]),fullName = str(el[1]),contra=str(el[2]),mail=str(el[3]),role=str(el[7])))
 
 @app.route("/")
 def index():
@@ -76,7 +77,7 @@ def upload():
         if request.method == 'POST':
             texto = request.form['nombre']
 
-            KNOWN_NAMES = f'{os.getcwd()}/fotos'
+            
             existe = False
 
             target = os.path.join(APP_ROOT, 'images/' + str(texto)+'')
@@ -203,12 +204,10 @@ def home_log():
         KNOWN_NAMES = f'{os.getcwd()}/fotos/'
         pics = 'No'
         
-        print(g.user.id)
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
         c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
         res = c.fetchone()
-        print(res[0])
         if os.path.exists(f'{KNOWN_NAMES}/{res[1]}'):                
             pics = 'Si'
 
@@ -216,14 +215,23 @@ def home_log():
 
 @app.route('/admin')
 def about():
-    
+
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
     c.execute("SELECT * FROM residents")
     res = c.fetchall()
-    print(res)
+    c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
+    resAgain = c.fetchone()
+    if os.path.exists(f'{KNOWN_NAMES}/{resAgain[1]}'):                
+        pics = 'Si'
 
-    return render_template("admin.html", todo = res)
+    if not g.user:
+        return render_template('login.html')
+    elif g.user.role == "Administrador":        
+        return render_template("admin.html", todo = res, info = resAgain)
+    else:
+        return render_template('profile_home.html', info = resAgain, picsvar = pics, noCapo = "a")
+
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
