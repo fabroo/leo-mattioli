@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, request, render_template, send_from_directory, flash, g, session, redirect, url_for
-
+from flask_socketio import SocketIO
 __author__ = 'ibininja'
 
 import sys
@@ -26,9 +26,11 @@ from email.mime.text import MIMEText
 import ssl
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
+socketio = SocketIO(app)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 print(APP_ROOT)
 KNOWN_NAMES = f'{os.getcwd()}/fotos'
+
 
 
 class User:
@@ -234,4 +236,5 @@ def about():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True)
+    app.run(port=5000, debug=True, load_dotenv=True,pakesepa = pakesepa)
+    
