@@ -34,12 +34,13 @@ KNOWN_NAMES = f'{os.getcwd()}/fotos'
 
 
 class User:
-    def __init__(self, id, fullName, contra, mail, role):
+    def __init__(self, id, fullName, contra, mail, role, company):
         self.id = id
         self.fullname = fullName
         self.contra = contra
         self.mail = mail
         self.role = role
+        self.company = company
 
 comm = sqlite3.connect
 BASE_DIR = os.getcwd()
@@ -51,7 +52,7 @@ c.execute(f'''SELECT * FROM residents''')
 pakesepa = c.fetchall()
 userList = []
 for el in pakesepa:
-    userList.append(User(id=str(el[0]),fullName = str(el[1]),contra=str(el[2]),mail=str(el[3]),role=str(el[7])))
+    userList.append(User(id=str(el[0]),fullName = str(el[1]),contra=str(el[2]),mail=str(el[3]),role=str(el[7]), company = str(el[4])))
 
 @app.route("/")
 def index():
@@ -220,11 +221,11 @@ def about():
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute("SELECT * FROM residents")
+    c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}'")
     res = c.fetchall()
     c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
     resAgain = c.fetchone()
-    if os.path.exists(f'{KNOWN_NAMES}/{resAgain[1]}'):                
+    if os.path.exists(f'{KNOWN_NAMES}/{resAgain[1]}'):
         pics = 'Si'
 
     if not g.user:
@@ -236,5 +237,5 @@ def about():
 
 
 if __name__ == "__main__":
-    app.run(port=5000, debug=True, load_dotenv=True,pakesepa = pakesepa)
+    app.run(port=5000, debug=True)
     
