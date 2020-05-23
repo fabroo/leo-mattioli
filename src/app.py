@@ -199,7 +199,7 @@ def home():
             return render_template("index_logged.html")
         return render_template('index.html')
 
-@app.route("/home_log")
+@app.route("/home_log",methods = ["GET","POST"])
 def home_log():
     if not g.user:
         return render_template('login.html')
@@ -234,7 +234,6 @@ def about():
         return render_template("admin.html", todo = res, info = resAgain)
     else:
         return render_template('profile_home.html', info = resAgain, picsvar = pics, noCapo = "a")
-
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)
