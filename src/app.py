@@ -207,22 +207,30 @@ def home_log():
     else:
         KNOWN_NAMES = f'{os.getcwd()}/fotos/'
         pics = 'No'
-        
         conn = sqlite3.connect(db_path)
         c = conn.cursor()
         c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
         res = c.fetchone()
+        c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}' AND createdAccount = 0")
+        unregistered = c.fetchall()
+        
         if os.path.exists(f'{KNOWN_NAMES}/{res[1]}'):                
             pics = 'Si'
+        if request.method == "POST":
+            newDni = request.form.get('newdni', False)
+            c.execute(f'''INSERT INTO residents VALUES({int(newDni)},NULL,NULL,NULL,"{g.user.company}",0,NULL,'Miembro')''')
+            conn.commit()
 
-        return render_template('profile_home.html', info = res, picsvar = pics)
+        return render_template('profile_home.html', info = res, picsvar = pics, unreg = len(unregistered))
 
-@app.route('/admin')
-def about():
+@app.route('/admin', methods=["GET","POST"])
+def admin():
 
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
-    c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}'")
+    c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}' AND createdAccount = 0")
+    unregistereda = c.fetchall()
+    c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}' AND createdAccount = 1")
     res = c.fetchall()
     c.execute(f"SELECT * FROM residents WHERE dni = {g.user.id}")
     resAgain = c.fetchone()
@@ -231,8 +239,16 @@ def about():
 
     if not g.user:
         return render_template('login.html')
-    elif g.user.role == "Administrador":        
-        return render_template("admin.html", todo = res, info = resAgain)
+    elif g.user.role == "Administrador":
+        for el in unregistereda:
+            elem = str(el[0])
+            if request.form.get(elem):
+                c.execute(f"DELETE FROM residents WHERE dni = {int(elem)}")
+                conn.commit()
+                c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}' AND createdAccount = 0")
+                unregistereda = c.fetchall()
+
+        return render_template("admin.html", todo = res, info = resAgain, nada = unregistereda)
     else:
         return render_template('profile_home.html', info = resAgain, picsvar = pics, noCapo = "a")
 @app.route('/horarios')

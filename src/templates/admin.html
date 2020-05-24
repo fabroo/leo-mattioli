@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,93 +8,151 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}">
     <script src="{{url_for('static', filename='js/materialize.min.js')}}"></script>
-    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 </head>
+
 <body>
     <style>
         .table td {
-   text-align: center;   
-}
+            text-align: center;
+        }
+
         .table th {
-   text-align: center;   
-}
+            text-align: center;
+        }
     </style>
 
-<nav>
-    <div class="nav-wrapper container">
-      <a href="#" class="brand-logo center">Registro de Miembros</a>
-      <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i class="material-icons">menu</i></a>
-    </div>
-</nav>
-<ul id="slide-out" class="sidenav">
-  <li><div class="user-view">
-    
-    <img src="{{info[6]}}" class="circle fotasa" alt="">
-    <a href="#name"><span class="black-text name">{{info[1]}}</span></a>
-    <a href="#email"><span class="black-text email">{{info[3]}}</span></a>
-    <a href="#email"><span class="black-text email">{{info[7]}}</span></a>
+    <nav>
+        <div class="nav-wrapper container">
+            <a href="#" class="brand-logo center">Registro de Miembros</a>
+            <a href="#" data-target="slide-out" class="sidenav-trigger show-on-large"><i
+                    class="material-icons">menu</i></a>
+        </div>
+    </nav>
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
 
-  </div></li>
+                <img src="{{info[6]}}" class="circle fotasa" alt="">
+                <a href="#name"><span class="black-text name">{{info[1]}}</span></a>
+                <a href="#email"><span class="black-text email">{{info[3]}}</span></a>
+                <a href="#email"><span class="black-text email">{{info[7]}}</span></a>
 
-  <li><div class="divider"></div></li>
-  <!-- <li><a class="subheader">Subheader</a></li> -->
-  <li><a class="waves-effect" href="/upload"> <i class="material-icons">add_a_photo</i> Subir fotos nuevas</a></li>
-  <li><a class="waves-effect" href="#!"> <i class="material-icons">assignment_ind</i> Tu registro de entradas</a></li>
-  <li><a class="waves-effect" href="/home_log"> <i class="material-icons">account_circle</i>Perfil</a></li>
-  <li><a class="waves-effect admOnly" href="/admin"> <i class="material-icons">book</i>Miembros</a></li>
-  <li><a class="waves-effect" href="/close_sess"><i class="material-icons">keyboard_return</i>Cerrar Sesión</a></li>
-  
+            </div>
+        </li>
 
-</ul>
-<div class="container">
-    <table class="table  table-hover ">
+        <li>
+            <div class="divider"></div>
+        </li>
+        <!-- <li><a class="subheader">Subheader</a></li> -->
+        <li><a class="waves-effect" href="/upload"> <i class="material-icons">add_a_photo</i> Subir fotos nuevas</a>
+        </li>
+        <li><a class="waves-effect" href="#!"> <i class="material-icons">assignment_ind</i> Tu registro de entradas</a>
+        </li>
+        <li><a class="waves-effect" href="/home_log"> <i class="material-icons">account_circle</i>Perfil</a></li>
+        <li><a class="waves-effect admOnly" href="/admin"> <i class="material-icons">book</i>Miembros</a></li>
+        <li><a class="waves-effect" href="/close_sess"><i class="material-icons">keyboard_return</i>Cerrar Sesión</a>
+        </li>
+
+
+    </ul>
+    <div class="container">
+        <div class="row"></div>
+        <div class="row justify-content-md-center">
+            <div class="col-4">
+                <button type="button" onclick="reg()" class="btn btn-primary">Registrados</button>
+                <button type="button" onclick="unreg()" class="btn btn-primary">No Registrados</button>
+            </div>
+        </div>
+
+        <table class="table table-hover side1">
             <th>NOMBRE</th>
             <th>DNI</th>
             <th>Password</th>
             <th>E-Mail</th>
             <th>COMPANY ID</th>
             <th>IMG</th>
-            
-        </thead>
-        
-        {% for elem in todo %}
+
+            </thead>
+
+            {% for elem in todo %}
             <tr>
-            <td>{{ elem[1] }}</td>
-            <td>{{ elem[0] }}</td>
-            <td>{{ elem[2] }}</td>
-            <td>{{ elem[3] }}</td>
-            <td>{{ elem[4] }}</td>
-            <td><img src="{{elem[6]}}" alt="" style="height: 30%;width: auto;" ></td>
+                <td>{{ elem[1] }}</td>
+                <td>{{ elem[0] }}</td>
+                <td>{{ elem[2] }}</td>
+                <td>{{ elem[3] }}</td>
+                <td>{{ elem[4] }}</td>
+                <td><img src="{{elem[6]}}" alt="" style="height: 30%;width: auto;"></td>
 
 
-           
+
             </tr>
-        {% endfor %}
+            {% endfor %}
 
-    </table>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var elems = document.querySelectorAll('.sidenav');
-        var options;
-        var instances = M.Sidenav.init(elems, options);
-    });
-    window.onload = function(){
-        var role = "{{info[7]}}"
-        
-        $('.admOnly').hide();
-        var role = "{{info[7]}}"
-        var deDonde = "{{noCapo}}"
-          if (deDonde == "a"){
-            alert("Cucha mi rey no tenes admin, quien te crees que sos")
-          }
-          if (role == "Administrador"){
-              $('.admOnly').show();
-          }
-    }
+        </table>
+        <form action="{{ url_for('admin') }}" method="POST" enctype="multipart/form-data">
+            <table class="table table-hover side2" id="side2">
+                <th>DNI</th>
+                <th>ACCIONES</th>
 
-</script>
+                </thead>
+                <tbody>
+                    {% for elem in nada %}
+                    <tr>
+                        <td>{{ elem[0] }}</td>
+                        <td class="buttonCol">
+                            <input type="submit" name="{{elem[0]}}" value="Borrar" class="btn btn-primary">
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+
+            </table>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var elems = document.querySelectorAll('.sidenav');
+            var options;
+            var instances = M.Sidenav.init(elems, options);
+        });
+        window.onload = function () {
+            var role = "{{info[7]}}";
+            $('.side2').hide();
+            $('.admOnly').hide();
+
+            for (let i = 0; i < array.length; i++) {
+                const element = array[i];
+
+            }
+
+            var deDonde = "{{noCapo}}"
+            if (deDonde == "a") {
+                alert("Cucha mi rey no tenes admin, quien te crees que sos")
+            }
+            if (role == "Administrador") {
+                $('.admOnly').show();
+            }
+        }
+        function unreg() {
+            $('.side1').hide();
+            $('.side2').show();
+
+        }
+        function reg() {
+            $('.side2').hide();
+            $('.side1').show();
+
+        }
+
+    </script>
 </body>
+
 </html>

@@ -76,16 +76,21 @@
                 <div class="col s4"><b>Jerarquía</b></div>
                 <div class="col s8">{{info[7]}}</div>
               </div>
+              
               <div class="row collection-item admOnly">
                 <form autocomplete="off" action="{{ url_for('home_log') }}" method="POST" enctype="multipart/form-data">
                   <div class="col s4"> <b>Nuevo Usuario</b></div>
                   <div class="col s6">
-                    <input required placeholder="DNI" type="text" name="companyid" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                    <input required placeholder="DNI" type="text" name="newdni" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                   </div>
                   <div class="col s2">
                     <input type="submit" class="btn btn-info boton-login" value="Crear" id="upload-button">
                   </div>
                 </form>
+              </div>
+              <div class="row collection-item">
+                <div class="col s4"><b>Usuarios no registrados en tu compañia</b></div>
+                <div class="col s8">{{unreg}}</div>
               </div>
             </div>
           </div>
