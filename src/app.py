@@ -132,6 +132,7 @@ def closeSess():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    mensaje  = "Ingrese contraseña"
     if request.method == 'POST':
         session.pop('user_id', None)
 
@@ -146,9 +147,9 @@ def login():
             return render_template('index_logged.html')
 
         else:
-            flash('not a valid username!, try again','warning')
+            mensaje = 'Usuario o Contraseña incorrectos!, try again'
     
-    return render_template('login.html')
+    return render_template('login.html', mensaje = mensaje)
 
 @app.route("/register",methods = ["GET","POST"])
 def register():
@@ -234,6 +235,22 @@ def about():
         return render_template("admin.html", todo = res, info = resAgain)
     else:
         return render_template('profile_home.html', info = resAgain, picsvar = pics, noCapo = "a")
+@app.route('/horarios')
+def horario():
+
+    conn = sqlite3.connect(db_path)
+    c = conn.cursor()
+    c.execute(f"SELECT * FROM residents WHERE companyid = '{g.user.company}'")
+    res = c.fetchall()
+
+    info = [(45500288, 'Fabrizio Corzini', 1234567, 'fcorzini@gmail.com', '1a2b3c', 1, 'static/assets/pfp/45500288.jpg', 'Miembro'), (45013685, 'Brenda Fleischer', 3406748, 'flebrenda@gmail.com', '1a2b3c', 1, 'static/assets/pfp/45013685.jpg', 'Administrador'), (45583265, 'Bruno Tievoli', 737026, 'tievolib@gmail.com', '1a2b3c', 1, 'static/assets/pfp/45583265.jpg', 'Administrador')] 
+
+    if not g.user:
+        return render_template('login.html')
+    elif g.user.role == "Administrador":        
+        return render_template("horarios.html", todo = info)
+    else:
+        return render_template('profile_home.html', info = res )
 
 if __name__ == "__main__":
     app.run(port=5000, debug=True)

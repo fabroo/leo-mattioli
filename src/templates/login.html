@@ -1,126 +1,93 @@
-
-<!--  -->
-<!--  -->
 <!DOCTYPE html>
 <html lang="en">
-   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    
-      <title>Login</title>
-        <!-- Bootstrap Core CSS -->
-        <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      
-        <!-- Custom Fonts -->
-        <link href="/static/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
-        <link href="/static/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet">
-      <link rel="stylesheet" href="static/">
-        <!-- Custom CSS -->
-        <link href="/static/css/stylish-portfolio.css" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-      <script src="/static/js/app.js"></script>
-      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-      <!-- <link rel="stylesheet" type="text/css" href="css/custom.css"> -->
-      <link rel="stylesheet" type="text/css" href="/static/css/custom.css">
-      <link href="https://fonts.googleapis.com/css2?family=Jost&display=swap" rel="stylesheet">
-      <!-- Bootstrap core CSS -->
-      <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-      <!-- Custom styles for this template -->
-      <link href="/static/css/simple-sidebar.css" rel="stylesheet">
-   </head>
-   <body>
-      <a class="menu-toggle rounded" href="#">
-         <svg class="bi bi-list-nested" width="2em" height="2em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" d="M4.5 11.5A.5.5 0 015 11h10a.5.5 0 010 1H5a.5.5 0 01-.5-.5zm-2-4A.5.5 0 013 7h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm-2-4A.5.5 0 011 3h10a.5.5 0 010 1H1a.5.5 0 01-.5-.5z" clip-rule="evenodd"/>
-          </svg>
-        </a>
-  
-  
-      <nav id="sidebar-wrapper">
-          <ul class="sidebar-nav">
-            <li class="sidebar-brand">
-              <a class="js-scroll-trigger" href="#page-top">Start Bootstrap</a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a class="js-scroll-trigger" href="#page-top">Home</a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a class="js-scroll-trigger" href="#about">About</a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a class="js-scroll-trigger" href="#services">Services</a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a class="js-scroll-trigger" href="#portfolio">Portfolio</a>
-            </li>
-            <li class="sidebar-nav-item">
-              <a class="js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-          </ul>
-        </nav>
-         <div id="page-content-wrapper">
-            
-            <div class="container-fluid">
-               <br>
-               <div id="msg" style="width: 100%;text-align: center;">
-                  <p>  Complete con sus datos para comenzar!</p>
-                  {% for message in get_flashed_messages() %}
-                  <h3>{{ message }}</h3>
-                  {% endfor %}
-               </div>
-               <br>
-               <div class="container">
-                  <div class="row">
-                     <div class="col"></div>
-                     <div class="col-10">
-                        <form  autocomplete="off" action="{{ url_for('login') }}" method="post"  enctype="multipart/form-data">
-                           <div class="container">
-                              <div class="row">
-                                 <div class="col"></div>
-                                 <div class="col-7">
-                                    <input required placeholder="insert username" type="text" name="user" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                                    <br>
-                                    <input required placeholder="insert password" type="password" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
-                                    <br>
-                                    <input type="submit" class="btn btn-info boton-login" value="Login!" id="upload-button">
-                                 </div>
-                                 <div class="col"></div>
-                              </div>
-                           </div>
-                        </form>
-                     </div>
-                     <div class="col"></div>
-                  </div>
-               </div>
-            </div>
-         </div>
-         <!-- /#page-content-wrapper -->
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Personal Bootstrap Template</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="/static/assets/img/favicon.png" rel="icon">
+  <link href="/static/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/static/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/icofont/icofont.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
+  <link href="/static/assets/vendor/owl.carousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/static/assets/vendor/venobox/venobox.css" rel="stylesheet">
+  <link href="/static/assets/css/style.css" rel="stylesheet">
+
+</head>
+
+<body>
+  <header id="header" class="header-tops">
+    <div class="container">
+
+      <h1><a href="index.html">Iniciar Sesión</a></h1>
+      <h2>Inserte sus datos para acceder a <span>los beneficios</span> de Leo Mattioli.</h2>
+
+      <div class="container-fluid ">
+        <br>
+        <div id="msg" style="width: 100%;text-align: center;">
+           
+           <h3>{{ mensaje }}</h3>
+           
+        </div>
+        <br>
+                 <form  autocomplete="off" action="{{ url_for('login') }}" method="post"  enctype="multipart/form-data">
+                    <div class="container">
+                       <div class="row">
+                          <div class="col"></div>
+                          <div class="col-7">
+                             <input style="opacity: .7;" required placeholder="insert username" type="text" name="user" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                             <br>
+                             <input style="opacity: .7;" required placeholder="insert password" type="password" name="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+                             <br>
+                             <input type="submit" class="btn btn-info boton-login" value="Login!" id="upload-button">
+                          </div>
+                          <div class="col"></div>
+                       </div>
+                    </div>
+                 </form>
+        </div>
+
+
+
+      <div class="social-links">
+        <a href="#" class="twitter"><i class="icofont-twitter"></i></a>
+        <a href="#" class="facebook"><i class="icofont-facebook"></i></a>
+        <a href="#" class="instagram"><i class="icofont-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="icofont-skype"></i></a>
+        <a href="#" class="linkedin"><i class="icofont-linkedin"></i></a>
       </div>
-      <!-- /#wrapper -->
-      
-  <!-- Bootstrap core JavaScript -->
-  <script src="/static/vendor/jquery/jquery.min.js"></script>
-  <script src="/static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Plugin JavaScript -->
-  <script src="/static/vendor/jquery-easing/jquery.easing.min.js"></script>
+    </div>
+  </header><!-- End Header -->
 
-  <!-- Custom scripts for this template -->
-  <script src="/static/js/stylish-portfolio.min.js"></script>
-      <script src="app.js"></script>
-      <script>
-        
-         $("#menu-toggle").click(function(e) {
-         e.preventDefault();
-         $("#wrapper").toggleClass("toggled");
-         });
-      </script>
-   </body>
+
+  
+  <!-- Vendor JS Files -->
+  <script src="/static/assets/vendor/jquery/jquery.min.js"></script>
+  <script src="/static/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/static/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="/static/assets/vendor/php-email-form/validate.js"></script>
+  <script src="/static/assets/vendor/waypoints/jquery.waypoints.min.js"></script>
+  <script src="/static/assets/vendor/counterup/counterup.min.js"></script>
+  <script src="/static/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="/static/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/static/assets/vendor/venobox/venobox.min.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/static/assets/js/main.js"></script>
+
+</body>
+
 </html>
