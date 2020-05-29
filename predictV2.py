@@ -16,7 +16,7 @@ FONT_THICKNESS = 2
 SELECTED_FRAMES = 10  #n of pictures taken 
 MODEL = 'hog'  # default: 'hog', other one can be 'cnn' - CUDA accelerated (if available) deep-learning pretrained model
 
-video = cv2.VideoCapture(0) #CAMBIAR SEGUN LA PC QUE SEA, BRENDA Y TIEVO USAN 0, FABRO USA 2
+video = cv2.VideoCapture(2) #CAMBIAR SEGUN LA PC QUE SEA, BRENDA Y TIEVO USAN 0, FABRO USA 2
 
 kf = open('./pickle/known_faces','rb')
 kn = open('./pickle/known_names','rb')
@@ -81,7 +81,7 @@ def predecir(name):
                     print(f' - {match}')
                     if name == match:
                         success_count += 1
-                    
+
                     # Each location contains positions in order: top, right, bottom, left
                     top_left = (face_location[3], face_location[0])
                     bottom_right = (face_location[1], face_location[2])
@@ -99,6 +99,9 @@ def predecir(name):
 
                     # Paint frame
                     cv2.rectangle(image, top_left, bottom_right, color, cv2.FILLED)
+
+                    if match != name:
+                        match = 'not ' + str(name).lower()
 
                     # Wite a name
                     cv2.putText(image, match, (face_location[3] + 10, face_location[2] + 15), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (200, 200, 200), FONT_THICKNESS)
