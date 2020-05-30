@@ -18,7 +18,7 @@ def todo(argument):
         'check': vibeCheck,
         'train': train,
         'train_bad': help_train,
-        'remove': remove,
+        'remove': delete,
         'quit': salir,
         'newID': newID,
         'predecir': predecir,
@@ -52,7 +52,7 @@ def train():
 def help_train():
      trainPorSiAlgoAndaMal.trainOld()
 
-def remove():
+def delete():
     theInput = input("Nombre de carpeta a borrar: ")
     remove.borrar(theInput)
 
