@@ -2,7 +2,6 @@ import os
 
 from flask import Flask, request, render_template, send_from_directory, flash, g, session, redirect, url_for
 from flask_socketio import SocketIO
-__author__ = 'ibininja'
 
 import sys
 from pathlib import Path
@@ -83,7 +82,7 @@ def upload():
             
             existe = False
 
-            target = os.path.join(APP_ROOT, 'images/' + str(texto)+'')
+            target = os.path.join(APP_ROOT, 'images\\' + str(texto)+'')
             print(target)
             
             if not os.path.isdir(target):
