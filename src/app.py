@@ -153,30 +153,42 @@ def login():
 @app.route("/register",methods = ["GET","POST"])
 def register():
  
-
     try:
+        
+        conn = sqlite3.connect(db_path)
+
+        c = conn.cursor()
+        c.execute("SELECT dni FROM residents")
+        res = c.fetchall()
+        
         targetReg = (f'{APP_ROOT}\\static\\assets\\pfp')
         print(targetReg)
-        idCompany = request.form.get('companyid',False)
-        dni = request.form.get('dni',False)
-        email = request.form.get('mail',False)
-        fullname = request.form.get('fullname',False)
-        pfpPath = f'static/assets/pfp/{dni}.jpg'
-        pfp = request.files.get('file')
-        filename = pfp.filename
-        print(filename)
-        filenameNew = f'{dni}.jpg'
-        ext = os.path.splitext(filename)[1]
-        if (ext == ".jpg"):
-            print("File supported moving on...")
-        else:
-            render_template("error.html", message="Files uploaded are not supported...")
-        destination = "/".join([targetReg, filenameNew])
-        if newUser.agregarUsuario(dni, fullname, email, idCompany,pfpPath):
-            flash("Cuenta creada con exito. Inicia Sesion arriba a la derecha. Bienvenido!")
-        pfp.save(destination)
-        # else:
-        #     flash("P  E  B  E  T  E")
+        if request.method == "POST":
+            idCompany = request.form.get('companyid',False)
+            dni = request.form.get('dni',False)
+            email = request.form.get('mail',False)
+            fullname = request.form.get('fullname',False)
+            pfpPath = f'static/assets/pfp/{dni}.jpg'
+            pfp = request.files.get('file')
+            filename = pfp.filename
+            print(filename)
+            filenameNew = f'{dni}.jpg'
+            ext = os.path.splitext(filename)[1]
+            print(res," ",dni)
+            
+            if dni not in res:
+                print("no esta")
+                return render_template("register.html", uwu="el dni ingresado no coincide con ningun usuario")
+            else:
+                if (ext == ".jpg"):
+                    print("File supported moving on...")
+                else:
+                    render_template("error.html", message="Files uploaded are not supported...")
+                    destination = "/".join([targetReg, filenameNew])
+                    if newUser.agregarUsuario(dni, fullname, email, idCompany,pfpPath):
+                        flash("Cuenta creada con exito. Inicia Sesion arriba a la derecha. Bienvenido!")
+                    pfp.save(destination)
+        
     except Exception as err:
         print('ESTE ES EL ERROR REY E' +str(err))
     return render_template('register.html')
