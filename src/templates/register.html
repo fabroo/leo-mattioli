@@ -72,13 +72,12 @@
          <div class="container-fluid">
             <br>
             <div id="msg" style="width: 100%;text-align: center;">
-               <p> Complete con sus datos para comenzar!</p>
-               {% for message in get_flashed_messages() %}
-               <h3>{{ message }}</h3>
-               {% endfor %}
+               <p style="font-size: 30px;font-weight: 400;"> Complete con sus datos para comenzar!</p>
+              
             </div>
-            <div id="msg" style="width: 100%;text-align: center;">
-               <p>{{uwu}}</p>
+            <div id="msg" style="width: 100%;text-align: center;display: flex;justify-content: center;">
+               <p style="margin: auto 1rem; font-size: 25px;" id="mensaje-2"> Ingrese sus datos para registrarse.</p>
+               <p style="margin: auto 1rem;font-size: 25px;"> {{uwu}}</p>
             </div>
             <br>
             <div class="container">
@@ -109,7 +108,7 @@
                                     </div>
                                  </div>
                                  <br>
-                                 <input required placeholder="E-Mail" type="text" name="mail" class="form-control"
+                                 <input required placeholder="E-Mail" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email" name="mail" class="form-control"
                                     aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
                                  <br>
                                  <div class="custom-file">
