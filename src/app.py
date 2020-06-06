@@ -1,33 +1,20 @@
-import os
+import ssl,os, sys
 
 from flask import Flask, request, render_template, send_from_directory, flash, g, session, redirect, url_for
 from flask_socketio import SocketIO
 
-import sys
+sys.path.insert(1, os.getcwd())
+#Import .py files
+
+import predictV2, inputId, addExtraPics, trainPeroBien,trainPorSiAlgoAndaMal,check,check_2, remove,newUser,sqlite3, smtplib
 from pathlib import Path
 
 
-sys.path.insert(1, os.getcwd())
-#Import .py files
-import predictV2
-import inputId
-import addExtraPics
-import trainPeroBien
-import trainPorSiAlgoAndaMal
-import check
-import check_2
-import remove
-import newUser
-import sqlite3
-import smtplib
-from email.mime.text import MIMEText
-#
-import ssl
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-socketio = SocketIO(app)
+
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-print(APP_ROOT)
+
 KNOWN_NAMES = f'{os.getcwd()}/fotos'
 
 
@@ -50,6 +37,7 @@ c = conn.cursor()
 c.execute(f'''SELECT * FROM residents''')
 pakesepa = c.fetchall()
 userList = []
+
 for el in pakesepa:
     userList.append(User(id=str(el[0]),fullName = str(el[1]),contra=str(el[2]),mail=str(el[3]),role=str(el[7]), company = str(el[4])))
 
