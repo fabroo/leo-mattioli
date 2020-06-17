@@ -6,6 +6,7 @@ from flask_socketio import SocketIO
 sys.path.insert(1, os.getcwd())
 #Import .py files
 
+from '../src/addExtraPics.py' import addExtraPics
 import predictV2, inputId, addExtraPics, trainPeroBien,trainPorSiAlgoAndaMal,check,check_2, remove,newUser,sqlite3, smtplib
 from pathlib import Path
 
